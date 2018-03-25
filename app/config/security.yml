@@ -5,7 +5,15 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    D14X79QZPNN3JG5NK2E8:
+                        password: $2y$12$pHNU3JqqPYrv4gI.Hz1lIuvX5Wf0v0JBexXXY46H6Fnl/WQQz0X6m
+                        roles: 'ROLE_USER'
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -13,12 +21,14 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        api:
+            pattern: ^/api
+            http_basic:
+                realm: 'API area'
+                provider: 'in_memory'
         main:
             anonymous: ~
-            # activate different ways to authenticate
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/api/*, roles: ROLE_USER }

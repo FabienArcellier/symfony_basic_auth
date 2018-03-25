@@ -4,7 +4,7 @@ si il est UP et de mesurer la latence.
 L'accès à cette API est restreint par login/mot de passe.
 
 ```bash
-curl -u "D14X79QZPNN3JG5NK2E8:b$E6szv$T3yGtUoZM'*//~c:JHMoQo" http://localhost:8000/healthcheck
+curl -v -u D14X79QZPNN3JG5NK2E8:b$E6szv$T3yGtUoZM*//~c:JHMoQo http://localhost:8000/healthcheck
 ```
 
 motivation
@@ -17,6 +17,7 @@ and an API SECRET as login/password.
 resources
 =========
 
-
+* https://symfony.com/doc/current/security.html
+* https://symfony.com/doc/current/security/multiple_user_providers.html
 
 
